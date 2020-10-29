@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { FormControl, Select, MenuItem } from "@material-ui/core";
+import InfoBox from "./components/InfoBox/InfoBox.jsx";
 import "./App.css";
 
 function App() {
-  //
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
+  const [countryInfo, setCountryInfo] = useState({});
 
   useEffect(() => {
     async function getData() {
@@ -33,8 +34,25 @@ function App() {
     getData();
   }, []);
 
+  useEffect(() => {
+    async function getCountryData() {
+      let url =
+        country === "worldwide"
+          ? "https://disease.sh/v3/covid-19/all"
+          : `https://disease.sh/v3/covid-19/countries/${country}`;
+
+      let response = await axios.get(url);
+      const countryInfo = response.data;
+
+      setCountryInfo(countryInfo);
+    }
+
+    getCountryData();
+  }, [country]);
+
   const onCountryChange = (e) => {
-    setCountry(e.target.value);
+    let country = e.target.value;
+    setCountry(country);
   };
 
   return (
@@ -53,6 +71,23 @@ function App() {
             ))}
           </Select>
         </FormControl>
+      </div>
+      <div className="app__infoBox">
+        <InfoBox
+          title="New Cases"
+          value={countryInfo.todayCases}
+          total={countryInfo.cases}
+        />
+        <InfoBox
+          title="New Recoveries"
+          value={countryInfo.todayRecovered}
+          total={countryInfo.recovered}
+        />
+        <InfoBox
+          title="New Deaths"
+          value={countryInfo.todayDeaths}
+          total={countryInfo.deaths}
+        />
       </div>
     </div>
   );
