@@ -1,5 +1,10 @@
 * {
   margin: 5px;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background-color: #f5f6fa;
 }
 
 .app {
@@ -13,8 +18,18 @@
   margin-bottom: 20px;
 }
 
-.app__infoBox {
+.app__title {
+  font-size: 36px;
+  font-weight: bolder;
+  color: rebeccapurple;
+}
+
+.app__infoBoxContainer {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin-bottom: 20px;
+}
+
+.app__infoBox {
+  width: 33.33%;
 }

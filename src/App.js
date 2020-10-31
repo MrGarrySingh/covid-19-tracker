@@ -58,10 +58,14 @@ function App() {
     setCountry(country);
   };
 
+  const numberWithCommas = (x) => {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
   return (
     <div className="app">
       <div className="app__header">
-        <h1>COVID 19 TRACKER</h1>
+        <div className="app__title">COVID 19 TRACKER</div>
         <FormControl>
           <Select value={country} onChange={onCountryChange} variant="outlined">
             <MenuItem value="worldwide" key={0}>
@@ -75,22 +79,28 @@ function App() {
           </Select>
         </FormControl>
       </div>
-      <div className="app__infoBox">
-        <InfoBox
-          title="New Cases"
-          value={countryInfo.todayCases}
-          total={countryInfo.cases}
-        />
-        <InfoBox
-          title="New Recoveries"
-          value={countryInfo.todayRecovered}
-          total={countryInfo.recovered}
-        />
-        <InfoBox
-          title="New Deaths"
-          value={countryInfo.todayDeaths}
-          total={countryInfo.deaths}
-        />
+      <div className="app__infoBoxContainer">
+        <div className="app__infoBox">
+          <InfoBox
+            title="New Cases"
+            value={countryInfo.todayCases}
+            total={countryInfo.cases}
+          />
+        </div>
+        <div className="app__infoBox">
+          <InfoBox
+            title="New Recoveries"
+            value={countryInfo.todayRecovered}
+            total={countryInfo.recovered}
+          />
+        </div>
+        <div className="app__infoBox">
+          <InfoBox
+            title="New Deaths"
+            value={countryInfo.todayDeaths}
+            total={countryInfo.deaths}
+          />
+        </div>
       </div>
       <div className="app__lineChart">
         <LineChart country={country} />

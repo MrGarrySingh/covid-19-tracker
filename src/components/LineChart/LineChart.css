@@ -4,3 +4,7 @@
   justify-content: space-between;
   width: 100%;
 }
+
+.lineChart__title {
+  font-size: 22px;
+}

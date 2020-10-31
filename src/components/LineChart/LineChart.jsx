@@ -64,20 +64,18 @@ const LineChart = ({ country }) => {
   return (
     <div className="lineChart">
       <div className="lineChart__header">
-        <div className="lineChart__title">
-          New Cases - {country.toUpperCase()}
-        </div>
+        <div className="lineChart__title">Historical New Cases</div>
         <div className="lineChart__form">
           <FormControl>
             <Select value={days} onChange={onDaysChange} variant="outlined">
               <MenuItem value="8" key={8}>
                 7 Days
               </MenuItem>
+              <MenuItem value="15" key={15}>
+                14 Days
+              </MenuItem>
               <MenuItem value="31" key={31}>
                 30 Days
-              </MenuItem>
-              <MenuItem value="61" key={61}>
-                60 Days
               </MenuItem>
             </Select>
           </FormControl>
@@ -93,7 +91,7 @@ const LineChart = ({ country }) => {
               top: 20,
               right: 20,
               bottom: 20,
-              left: 20,
+              left: 10,
             }}
           >
             <CartesianGrid stroke="#f5f5f5" />
@@ -101,7 +99,7 @@ const LineChart = ({ country }) => {
             <YAxis />
             <Tooltip />
             <Legend />
-            <Line type="natural" dataKey="New Cases" stroke="#ff7300" />
+            <Line type="natural" dataKey="New Cases" stroke="rebeccapurple" />
           </ComposedChart>
         </ResponsiveContainer>
       </div>
