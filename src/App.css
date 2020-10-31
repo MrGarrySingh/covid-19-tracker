@@ -1,5 +1,9 @@
 * {
-  margin: 0;
+  margin: 5px;
+}
+
+.app {
+  width: 100%;
 }
 
 .app__header {
@@ -12,4 +16,5 @@
 .app__infoBox {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 20px;
 }

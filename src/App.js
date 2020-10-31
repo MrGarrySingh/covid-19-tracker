@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { FormControl, Select, MenuItem } from "@material-ui/core";
 import InfoBox from "./components/InfoBox/InfoBox.jsx";
+import LineChart from "./components/LineChart/LineChart.jsx";
+
 import "./App.css";
 
 function App() {
@@ -25,6 +27,7 @@ function App() {
           name: country.country,
           value: country.countryInfo.iso3,
           key: country.countryInfo._id,
+          flag: country.countryInfo.flag,
         }))
         .filter((country) => country.key !== null);
 
@@ -88,6 +91,9 @@ function App() {
           value={countryInfo.todayDeaths}
           total={countryInfo.deaths}
         />
+      </div>
+      <div className="app__lineChart">
+        <LineChart country={country} />
       </div>
     </div>
   );
